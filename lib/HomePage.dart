@@ -13,7 +13,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var categoryName,  bannerImage, image, productName, brandName, stock, productPrice, productReview ;
+  var categoryName,  bannerImage, image, productName, brandName, stock, productReview ;
+  var productPrice = 100;
 
   var demoImage = 'https://d3jf6a0vqxxyu1.cloudfront.net/media/brand_images/Suzuki.png';
 
@@ -100,15 +101,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         SizedBox(height: 15,),
                         Row(
                           children: [
-                            Text(productPrice != null ? "BDT " + productPrice.toString()  : "Loading ",
+                            Text(productPrice != null ? "BDT " + discount()  : "Loading ",
                               style: TextStyle(color: Colors.red, fontFamily: 'Roboto',fontSize: 28, fontWeight: FontWeight.bold),),
-                            SizedBox(width: 30,),
-                            Text(discount(),
+                            SizedBox(width: 25,),
+                            Text(productPrice != null ? "BDT " + productPrice.toString()  : "Loading ",
                               style: TextStyle(fontFamily: 'Roboto',fontSize: 20,
                                 decorationColor: Colors.grey,
                                 decoration: TextDecoration.lineThrough,
                               ),),
-                            SizedBox(width: 30,),
+                            SizedBox(width: 25,),
                             Container(
                               alignment: Alignment.center,
                               height: 40,
