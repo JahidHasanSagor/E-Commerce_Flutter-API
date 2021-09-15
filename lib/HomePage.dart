@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var categoryName,  bannerImage, image, productName, brandName, stock, productPrice, productReview ;
 
-  var imagedemo = 'https://d3jf6a0vqxxyu1.cloudfront.net/media/images/product/None/21/Suzuki-GSX-R150.jpeg';
+  var demoImage = 'https://d3jf6a0vqxxyu1.cloudfront.net/media/brand_images/Suzuki.png';
 
   Future<void> getApiData() async{
     http.Response response = await http.get(Uri.parse("http://3.1.180.10/api/product-core/suzuki-gsx-r150-fi-dual-channel-abs-yvj2/0/"));
@@ -48,14 +48,24 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Product Deatails", style: TextStyle(color: Colors.black),),backgroundColor: Colors.white,),
+      appBar: AppBar(
+        title: Text("Product Deatails", style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.share_outlined),
+            color: Colors.black,
+            iconSize: 30,
+          ),
+        ],),
       backgroundColor: Color(0xFFD2EDF8),
       body:SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 600,
+              height: 650,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -71,14 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     indicatorColor: Colors.blue,
                     indicatorBackgroundColor: Colors.grey,
                     children: [
-                      Image.network(imagedemo),
-                      Image.network(image != null ? image : 'https://d3jf6a0vqxxyu1.cloudfront.net/media/brand_images/Suzuki.png'),
-                      Image.network(bannerImage != null ? bannerImage : imagedemo),
+                      Image.network(image != null ? image : demoImage),
+                      Image.network(bannerImage != null ? bannerImage : demoImage),
+                      Image.network(image != null ? image : demoImage),
                     ],
-                    onPageChanged: (value) {
-                      print('Page changed: $value');
-                    },
-                    autoPlayInterval: 4000,
+                    autoPlayInterval: 3000,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:10.0, right: 8.0),
@@ -86,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Container(
                           child: Text(categoryName != null ? "Category Name: "+ categoryName.toString() + "\n" +
-                              "Product Name: "+ productName.toString() + "\n"+ "Brand Name: " + brandName.toString()   : "Loading ",
+                              "Product Name: "+ productName.toString() + "\n"+ "Brand Name: " + brandName.toString() + "\n"+
+                              "Stock: " +stock.toString()   : "Loading ",
                             style: TextStyle(fontFamily: 'Roboto',fontSize: 23),),
                         ),
                         SizedBox(height: 15,),
@@ -189,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         )
+
                       ],
                     ),
                   ),
@@ -197,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 20, right: 10),
+              padding: const EdgeInsets.only(left: 10.0, top: 25, right: 10),
               child: Column(
                 children: [
                   Row(
@@ -210,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                    children: [
                      Icon(
                        Icons.shopping_cart_outlined,
-                       color: Colors.black38,
+                       color: Colors.orange,
                        size: 24.0,
                        semanticLabel: 'Text to announce in accessibility modes',
                      ),
@@ -222,7 +231,6 @@ class _MyHomePageState extends State<MyHomePage> {
                    ],
                  ),
                   SizedBox(height: 20,),
-
                   Row(
                     children: [
                       Text("Payment Method (Supported",   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
@@ -236,6 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text('\u{274C} Cash on delivery not available', style: TextStyle(fontSize: 20,))
                     ],
                   ),
+                  SizedBox(height: 8,),
                   Row(
                     children: [
                       Text("\u{2714} Bkash", style: TextStyle(fontSize: 20,)),
@@ -261,15 +270,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ExpansionTile(
                     title: Text('Additional Information', textAlign: TextAlign.start,   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
                     children: <Widget>[
-                      ListTile(title: Text('\u{25FE} Soft-touch jersy')),
-                      ListTile(title: Text('\u{25FE} Lose Fabric')),
-                      ListTile(title: Text('\u{25FE} High Sensitive')),
-                      ListTile(title: Text('\u{25FE} Soft-touch jersy')),
-                      ListTile(title: Text('\u{25FE} Lose Fabric')),
-                      ListTile(title: Text('\u{25FE} High Sensitive')),
-
+                      ListTile(title: Text('\u{25FE} L,M,S,XL')),
+                      ListTile(title: Text('\u{25FE} Colors: Black, Blue, Red')),
                     ],
                   ),
+                  SizedBox(height: 100,),
+                  Container(
+                    child: Text("Contact\n\u{1F4E7} jahid.h.sagor@gmail.com",style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  ),
+                  Container(height: 50,)
 
                 ],
               ),
